@@ -58,3 +58,5 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/notifications
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/school
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/student
+          
+          
