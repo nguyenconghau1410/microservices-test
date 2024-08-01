@@ -11,6 +11,8 @@ on:
       - notifications/**
       - school/**
       - student/**
+      - 'docker-compose.yml'
+      - .github/workflows/pipeline.yml
 jobs:
   build-deploy:
     name: Build & Deploy Micro Services on Kubernetes
