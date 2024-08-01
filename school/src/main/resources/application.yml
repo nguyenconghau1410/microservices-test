@@ -3,5 +3,3 @@ spring:
     name: school
   config:
     import: optional:configserver:http://localhost:8888
-  flyway:
-    baseline-on-migrate: true

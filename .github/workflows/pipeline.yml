@@ -36,6 +36,11 @@ jobs:
           docker-compose -f docker-compose.yml up -d
           docker-compose logs config-server
           sleep 15
+          
+          docker exec -it postgresql psql -U thuytien -c "CREATE DATABASE school";
+          docker exec -it postgresql psql -U thuytien -c "CREATE DATABASE student";
+  
+  
           cd discovery && mvn clean package
           cd ../gateway && mvn clean package
           cd ../notifications && mvn clean package

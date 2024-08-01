@@ -66,16 +66,16 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
     networks:
       - postgres
-  mongodb:
-    image: mongo
-    container_name: mongo_db
-    ports:
-      - 27017:27017
-    volumes:
-      - mongo:/data
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=thuytien
-      - MONGO_INITDB_ROOT_PASSWORD=conghau
+#  mongodb:
+#    image: mongo
+#    container_name: mongo_db
+#    ports:
+#      - 27017:27017
+#    volumes:
+#      - mongo:/data
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=thuytien
+#      - MONGO_INITDB_ROOT_PASSWORD=conghau
 
 
 networks:
