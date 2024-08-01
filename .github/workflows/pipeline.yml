@@ -39,8 +39,8 @@ jobs:
           cd discovery && mvn clean package
           cd ../gateway && mvn clean package
           cd ../notifications && mvn clean package
-          cd ../school && mvn clean package
           cd ../student && mvn clean package
+          cd ../school && mvn clean package
       - name: Build Docker images
         run: |
           docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/discovery ./discovery
