@@ -15,7 +15,7 @@ spring:
     password: conghau
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
