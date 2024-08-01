@@ -1,13 +1,8 @@
-version: '3.8'
-
 services:
   config-server:
     image: racingboy560/config-server
     ports:
       - "8222:8222"
-    networks:
-      - config-network
-
   postgresql:
     container_name: postgresql
     image: postgres
@@ -20,9 +15,9 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - db-network
-    restart: unless-stopped
 
+      - postgres
+    restart: unless-stopped
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -35,9 +30,15 @@ services:
     ports:
       - "5050:80"
     networks:
-      - db-network
+      - postgres
     restart: unless-stopped
-
+#  zipkin:
+#    container_name: zipkin
+#    image: openzipkin/zipkin
+#    ports:
+#      - "9411:9411"
+#    networks:
+#      - postgres
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -48,8 +49,7 @@ services:
     ports:
       - "22181:2181"
     networks:
-      - kafka-network
-
+      - postgres
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: ms_kafka
@@ -65,8 +65,7 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
     networks:
-      - kafka-network
-
+      - postgres
   mongodb:
     image: mongo
     container_name: mongo_db
@@ -77,53 +76,11 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=thuytien
       - MONGO_INITDB_ROOT_PASSWORD=conghau
-    networks:
-      - db-network
 
-  discovery:
-    build: ./discovery
-    depends_on:
-      - config-server
-    networks:
-      - service-network
-
-  gateway:
-    build: ./gateway
-    depends_on:
-      - config-server
-    networks:
-      - service-network
-
-  school:
-    build: ./school
-    depends_on:
-      - config-server
-      - kafka
-      - postgresql
-    networks:
-      - service-network
-
-  student:
-    build: ./student
-    depends_on:
-      - config-server
-      - postgresql
-    networks:
-      - service-network
-
-  notifications:
-    build: ./notifications
-    depends_on:
-      - kafka
-      - mongodb
-    networks:
-      - service-network
 
 networks:
-  config-network:
-  db-network:
-  kafka-network:
-  service-network:
+  postgres:
+    driver: bridge
 
 volumes:
   postgres:
