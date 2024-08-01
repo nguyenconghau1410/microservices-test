@@ -35,7 +35,7 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml up -d
           docker-compose logs config-server
-          sleep 30
+          sleep 15
           cd discovery && mvn clean package
           cd ../gateway && mvn clean package
           cd ../notifications && mvn clean package
