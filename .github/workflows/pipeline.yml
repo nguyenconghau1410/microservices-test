@@ -34,31 +34,43 @@ jobs:
 
       - name: Build and push config-server
         uses: docker/build-push-action@v6
-        runs: |
-          docker build -t ${{ secrets.DOCKER_USER_NAME }}/config-server:latest ./config-server
-          docker push ${{ secrets.DOCKER_USER_NAME }}/config-server:latest
+        with:
+          context: ./config-server
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USER_NAME }}/config-server:latest
       - name: Build and push discovery
         uses: docker/build-push-action@v6
-        runs: |
-          docker build -t ${{ secrets.DOCKER_USER_NAME }}/discovery:latest ./discovery
-          docker push ${{ secrets.DOCKER_USER_NAME }}/discovery:latest
+        with:
+          context: ./discovery
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USER_NAME }}/discovery:latest
       - name: Build and push gateway
         uses: docker/build-push-action@v6
-        runs: |
-          docker build -t ${{ secrets.DOCKER_USER_NAME }}/gateway:latest ./gateway
-          docker push ${{ secrets.DOCKER_USER_NAME }}/gateway:latest
+        with:
+          context: ./gateway
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USER_NAME }}/gateway:latest
       - name: Build and push notifications
         uses: docker/build-push-action@v6
-        runs: |
-          docker build -t ${{ secrets.DOCKER_USER_NAME }}/notifications:latest ./notifications
-          docker push ${{ secrets.DOCKER_USER_NAME }}/notifications:latest
+        with:
+          context: ./notifications
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USER_NAME }}/notifications:latest
       - name: Build and push school
         uses: docker/build-push-action@v6
-        runs: |
-          docker build -t ${{ secrets.DOCKER_USER_NAME }}/school:latest ./school
-          docker push ${{ secrets.DOCKER_USER_NAME }}/school:latest
+        with:
+          context: ./school
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USER_NAME }}/school:latest
       - name: Build and push student
         uses: docker/build-push-action@v6
-        runs: |
-          docker build -t ${{ secrets.DOCKER_USER_NAME }}/student:latest ./student
-          docker push ${{ secrets.DOCKER_USER_NAME }}/student:latest
+        with:
+          context: ./student
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USER_NAME }}/student:latest
