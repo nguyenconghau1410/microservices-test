@@ -31,27 +31,34 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER_NAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
       - name: Build and push config-server
+        uses: docker/build-push-action@v6
         runs: |
           docker build -t ${{ secrets.DOCKER_USER_NAME }}/config-server:latest ./config-server
           docker push ${{ secrets.DOCKER_USER_NAME }}/config-server:latest
       - name: Build and push discovery
+        uses: docker/build-push-action@v6
         runs: |
           docker build -t ${{ secrets.DOCKER_USER_NAME }}/discovery:latest ./discovery
           docker push ${{ secrets.DOCKER_USER_NAME }}/discovery:latest
       - name: Build and push gateway
+        uses: docker/build-push-action@v6
         runs: |
           docker build -t ${{ secrets.DOCKER_USER_NAME }}/gateway:latest ./gateway
           docker push ${{ secrets.DOCKER_USER_NAME }}/gateway:latest
       - name: Build and push notifications
+        uses: docker/build-push-action@v6
         runs: |
           docker build -t ${{ secrets.DOCKER_USER_NAME }}/notifications:latest ./notifications
           docker push ${{ secrets.DOCKER_USER_NAME }}/notifications:latest
       - name: Build and push school
+        uses: docker/build-push-action@v6
         runs: |
           docker build -t ${{ secrets.DOCKER_USER_NAME }}/school:latest ./school
           docker push ${{ secrets.DOCKER_USER_NAME }}/school:latest
       - name: Build and push student
+        uses: docker/build-push-action@v6
         runs: |
           docker build -t ${{ secrets.DOCKER_USER_NAME }}/student:latest ./student
           docker push ${{ secrets.DOCKER_USER_NAME }}/student:latest
