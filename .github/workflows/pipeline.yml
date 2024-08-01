@@ -36,8 +36,8 @@ jobs:
           docker-compose -f docker-compose.yml up -d
           docker-compose logs config-server
           
-          docker exec -it postgresql psql -U thuytien -c "CREATE DATABASE school";
-          docker exec -it postgresql psql -U thuytien -c "CREATE DATABASE student";
+          docker exec -T postgresql psql -U thuytien -c "CREATE DATABASE school";
+          docker exec -T postgresql psql -U thuytien -c "CREATE DATABASE student";
           sleep 10
   
           cd discovery && mvn clean package
