@@ -56,10 +56,10 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Push Docker images
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/discovery
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/gateway
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/notifications
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/school
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/student
+          docker push ${{ secrets.DOCKER_USER_NAME }}/discovery
+          docker push ${{ secrets.DOCKER_USER_NAME }}/gateway
+          docker push ${{ secrets.DOCKER_USER_NAME }}/notifications
+          docker push ${{ secrets.DOCKER_USER_NAME }}/school
+          docker push ${{ secrets.DOCKER_USER_NAME }}/student
           
           
