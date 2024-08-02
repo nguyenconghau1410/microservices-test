@@ -44,11 +44,11 @@ jobs:
           cd ../school && mvn clean package
       - name: Build Docker images
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/discovery ./discovery
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/gateway ./gateway
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/notifications ./notifications
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/school ./school
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/student ./student
+          docker build -t ${{ secrets.DOCKER_USER_NAME }}/discovery ./discovery
+          docker build -t ${{ secrets.DOCKER_USER_NAME }}/gateway ./gateway
+          docker build -t ${{ secrets.DOCKER_USER_NAME }}/notifications ./notifications
+          docker build -t ${{ secrets.DOCKER_USER_NAME }}/school ./school
+          docker build -t ${{ secrets.DOCKER_USER_NAME }}/student ./student
       - name: Login to Docket Hub
         uses: docker/login-action@v3
         with:
