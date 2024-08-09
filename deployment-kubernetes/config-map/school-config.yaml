@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: school-config
+data:
+  application.yml: |
+    eureka:
+      instance:
+        hostname: 10.97.42.85
+      client:
+        service-url:
+          defaultZone: http://10.97.42.85:8761/eureka
+    spring:
+      cloud:
+        config:
+          enabled: false
+      datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://10.99.222.225:5432/school
+        username: thuytien
+        password: conghau
+      jpa:
+        hibernate:
+          ddl-auto: create
+        database: postgresql
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+      kafka:
+        producer:
+          bootstrap-servers: kafka:9092
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+          properties:
+            spring.json.type.mapping: fullSchoolResponse:com.example.school.FullSchoolResponse
+
+    server:
+      port: 8070
+    application:
+      config:
+        students-url: http://10.98.93.248:8090/api/v1/students

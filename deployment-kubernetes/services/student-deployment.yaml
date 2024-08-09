@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student-deployment
+  template:
+    metadata:
+      labels:
+        app: student-deployment
+    spec:
+      containers:
+      - name: student
+        image: racingboy560/student
+        ports:
+        - containerPort: 8090
+        volumeMounts:
+        - name: student-config
+          mountPath: /app/application.yml
+          subPath: application.yml
+      volumes:
+      - name: student-config
+        configMap:
+          name: student-config

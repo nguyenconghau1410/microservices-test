@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-config
+data:
+  application.yml: |
+    eureka:
+      client:
+        register-with-eureka: false
+    server:
+      port: 8222
+    spring:
+      cloud:
+        config:
+          enabled: false
+        gateway:
+          discovery:
+            locator:
+              enabled: true
+          routes:
+            - id: students
+              uri: http://10.98.93.248:8090
+              predicates:
+                - Path=/api/v1/students/**
+            - id: schools
+              uri: http://10.106.35.37:8070
+              predicates:
+                - Path=/api/v1/school/**

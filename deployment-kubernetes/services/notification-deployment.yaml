@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-deployment
+  template:
+    metadata:
+      labels:
+        app: notification-deployment
+    spec:
+      containers:
+      - name: notifications
+        image: racingboy560/notifications
+        ports:
+        - containerPort: 8040
+        volumeMounts:
+        - name: notification-config
+          mountPath: /app/application.yml
+          subPath: application.yml
+      volumes:
+      - name: notification-config
+        configMap:
+          name: notification-config

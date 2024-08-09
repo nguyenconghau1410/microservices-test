@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discovery-deployment
+  template:
+    metadata:
+      labels:
+        app: discovery-deployment
+    spec:
+      containers:
+      - name: discovery
+        image: racingboy560/discovery
+        ports:
+        - containerPort: 8761
+        volumeMounts:
+        - name: discovery-config
+          mountPath: /app/application.yml
+          subPath: application.yml
+      volumes:
+      - name: discovery-config
+        configMap:
+          name: discovery-config
